@@ -1128,6 +1128,17 @@
       color: var(--text-muted);
       margin-bottom: 40px;
     }
+    .precio-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 860px;
+      margin: 0 auto 28px;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .precio-cards-grid { grid-template-columns: 1fr; max-width: 420px; }
+    }
     .precio-card {
       background: var(--glass-bg);
       backdrop-filter: blur(var(--glass-blur));
@@ -1135,8 +1146,6 @@
       border: 2px solid var(--accent-gold);
       border-radius: 20px;
       padding: 44px 36px;
-      max-width: 420px;
-      margin: 0 auto 28px;
       position: relative;
       overflow: hidden;
       box-shadow:
@@ -1150,6 +1159,52 @@
       top: 0; left: 0; right: 0;
       height: 4px;
       background: linear-gradient(90deg, var(--accent-gold), var(--accent-warm));
+    }
+    /* VIP card — premium gold treatment */
+    .precio-card-vip {
+      border-color: #f0d080;
+      background: linear-gradient(145deg, rgba(30,22,8,.85) 0%, rgba(17,24,39,.85) 100%);
+      box-shadow:
+        0 0 0 1px rgba(240,208,128,.15),
+        0 0 40px rgba(201,147,58,.18),
+        0 0 100px rgba(201,147,58,.08),
+        var(--shadow-depth-3);
+    }
+    .precio-card-vip::before {
+      height: 5px;
+      background: linear-gradient(90deg, #C9933A, #f0d080, #E8B86D, #C9933A);
+      background-size: 200% 100%;
+      animation: shimmerGold 2.5s linear infinite;
+    }
+    @keyframes shimmerGold {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .vip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(201,147,58,.25), rgba(240,208,128,.15));
+      border: 1px solid rgba(240,208,128,.4);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #f0d080;
+      margin-bottom: 16px;
+    }
+    .btn-cta-vip {
+      background: linear-gradient(135deg, #C9933A 0%, #f0d080 50%, #C9933A 100%) !important;
+      background-size: 200% 100% !important;
+      color: #0A0E1A !important;
+      font-weight: 800 !important;
+      animation: shimmerGold 2.5s linear infinite !important;
+    }
+    .btn-cta-vip:hover {
+      transform: translateY(-3px) scale(1.02) !important;
+      box-shadow: 0 12px 36px rgba(201,147,58,.4) !important;
     }
     .precio-label {
       font-size: .85rem;
@@ -1793,18 +1848,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="headline" data-animate="fade-up" data-delay="100">El <span class="red">85% del aforo</span> ya está reservado</h2>
     <p class="precio-subtitle" data-animate="fade-up" data-delay="150">Un único formato. Una experiencia irrepetible.</p>
 
-    <div class="precio-card" data-animate="zoom-in" data-delay="200">
-      <p class="precio-label">Entrada General</p>
-      <p class="precio-amount"><span>$</span>100 <span>USD</span></p>
-      <p class="precio-igv">*Precio no incluye IGV</p>
-      <ul class="precio-benefits">
-        <li><span class="check">✓</span><span>Acceso presencial al taller completo (08:30 – 12:30 hrs)</span></li>
-        <li><span class="check">✓</span><span>Ejercicios vivenciales guiados por David Fischman</span></li>
-        <li><span class="check">✓</span><span>Material de apoyo para tu proceso post-taller</span></li>
-        <li><span class="check">✓</span><span>Experiencia presencial en un espacio diseñado para la transformación</span></li>
-        <li><span class="check">✓</span><span>Espacio seguro y confidencial</span></li>
-      </ul>
-      <a href="https://pay.hotmart.com/C87154076P?off=t6etj2e2&checkoutMode=10" target="_blank" rel="noopener" class="btn-cta">QUIERO SER PARTE →</a>
+    <div class="precio-cards-grid">
+
+      <!-- ENTRADA GENERAL -->
+      <div class="precio-card" data-animate="fade-right" data-delay="200">
+        <p class="precio-label">Entrada General</p>
+        <p class="precio-amount"><span>$</span>100 <span>USD</span></p>
+        <p class="precio-igv">*Precio no incluye IGV</p>
+        <ul class="precio-benefits">
+          <li><span class="check">✓</span><span>Acceso presencial al taller completo (08:30 – 12:30 hrs)</span></li>
+          <li><span class="check">✓</span><span>Ejercicios vivenciales guiados por David Fischman</span></li>
+          <li><span class="check">✓</span><span>Material de apoyo para tu proceso post-taller</span></li>
+          <li><span class="check">✓</span><span>Experiencia presencial en un espacio diseñado para la transformación</span></li>
+          <li><span class="check">✓</span><span>Espacio seguro y confidencial</span></li>
+        </ul>
+        <a href="https://pay.hotmart.com/C87154076P?off=t6etj2e2&checkoutMode=10" target="_blank" rel="noopener" class="btn-cta">QUIERO SER PARTE →</a>
+      </div>
+
+      <!-- ENTRADA VIP -->
+      <div class="precio-card precio-card-vip" data-animate="fade-left" data-delay="300">
+        <div class="vip-badge">✨ VIP — Acceso Exclusivo</div>
+        <p class="precio-label" style="color:#f0d080;">Entrada VIP</p>
+        <p class="precio-amount"><span>$</span>197 <span>USD</span></p>
+        <p class="precio-igv">*Precio no incluye IGV</p>
+        <ul class="precio-benefits">
+          <li><span class="check">✓</span><span>Asientos preferenciales cerca del instructor</span></li>
+          <li><span class="check">✓</span><span>Foto profesional en el evento</span></li>
+          <li><span class="check">✓</span><span>Sesión de preguntas privadas (online)</span></li>
+          <li><span class="check">✓</span><span>Pack digital adicional exclusivo</span></li>
+          <li><span class="check">✓</span><span>Certificado especial con diseño premium</span></li>
+          <li><span class="check">✓</span><span>Meet &amp; Greet 30 min con David Fischman</span></li>
+        </ul>
+        <a href="https://pay.hotmart.com/C87154076P?off=qinjtx7r&checkoutMode=10" target="_blank" rel="noopener" class="btn-cta btn-cta-vip">QUIERO ENTRADA VIP ✨</a>
+      </div>
+
     </div>
 
     <p class="precio-scarcity" data-animate="fade-up" data-delay="100">⚠ El 85% del aforo ya está reservado — No esperes más</p>
